@@ -3,7 +3,9 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 
-import { FoodFinderComponent } from "./food-finder/food-finder.component"
+import { FinderService } from "./services/finder.service";
+import { FoodFinderComponent } from "./food-finder/food-finder.component";
+
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
@@ -23,6 +25,7 @@ import { FoodFinderComponent } from "./food-finder/food-finder.component"
         FoodFinderComponent,
     ],
     providers: [
+        FinderService
     ],
     schemas: [
         NO_ERRORS_SCHEMA
