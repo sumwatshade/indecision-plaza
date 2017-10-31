@@ -1,3 +1,7 @@
+# No build/dependencies
 node_modules
 platforms
 App_Resources
+
+# No generated files
+*.js
