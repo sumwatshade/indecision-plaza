@@ -6,8 +6,7 @@ import { FoodFinderComponent } from "./food-finder/food-finder.component";
 
 
 const routes: Routes = [
-    { path: "", redirectTo: "/food", pathMatch: "full" },
-    { path: "food", component: FoodFinderComponent },
+    { path: "", component: FoodFinderComponent },
 ];
 
 @NgModule({
