@@ -1,15 +1,12 @@
 <ActionBar class="action-bar">
-    <!--
-    Use the NavigationButton as a side-drawer button in Android because ActionItems are shown on the right side of the ActionBar
-    -->
-    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+
     <!--
     Use the ActionItem for IOS with position set to left. Using the NavigationButton as a side-drawer button in iOS is not possible, because its function is to always navigate back in the application.
     -->
-    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+    <ActionItem  android:visibility="collapsed" (tap)="testPrint()"
         ios.position="left">
     </ActionItem>
-    <Label class="action-bar-title" text="Home"></Label>
+    <Label class="action-bar-title" text="Indecision Plaza"></Label>
 </ActionBar>
 
 <!--
@@ -19,7 +16,7 @@ http://docs.telerik.com/devtools/nativescript-ui/Controls/Angular/SideDrawer/get
 The RadSideDrawer component is designed to be used as a root element and
 it shouldn't have any other siblings other than the <ActionBar> component.
 -->
-<GridLayout>
-  <span>test</span>
-  <input type="button" name="Find Food!" (click)="findFood()">
-</GridLayout>
+<StackLayout>
+  <Label text="Hello!"></Label>
+  <Button text="Pick a Restaraunt!" (tap)="findFood()"></Button>
+</StackLayout>

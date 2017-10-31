@@ -36,6 +36,7 @@ export class FinderService {
     }
     let headers = new Headers();
     this.http.post(FinderService.API_URL,authBody).map(res => res.json()).forEach((authJson)=>{
+      console.log(authJson.access_token)
       headers.append("access_token","Bearer " + authJson.access_token)
       return headers;
     });

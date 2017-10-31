@@ -14,4 +14,8 @@ export class FoodFinderComponent {
       console.log(elem);
     })
   }
+
+  testPrint() {
+    console.log("test")
+  }
 }
