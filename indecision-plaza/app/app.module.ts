@@ -2,6 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
+import { NativeScriptHttpModule } from "nativescript-angular/http";
 
 import { FinderService } from "./services/finder.service";
 import { FoodFinderComponent } from "./food-finder/food-finder.component";
@@ -18,6 +19,7 @@ import { FoodFinderComponent } from "./food-finder/food-finder.component";
     ],
     imports: [
         NativeScriptModule,
+        NativeScriptHttpModule,
         AppRoutingModule
     ],
     declarations: [
