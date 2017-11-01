@@ -10,9 +10,14 @@ export class FoodFinderComponent {
   constructor(private foodSvc: FinderService) { }
 
   findFood(){
-    this.foodSvc.getNearbyFood().forEach((elem)=>{
-      console.log(elem);
-    })
+    this.foodSvc.getNearbyFood().forEach((data) => {
+      console.log(data.total)
+      for(let foodPlace of data.businesses){
+        console.log(foodPlace.name)
+      }
+
+    });
+
   }
 
   testPrint() {
