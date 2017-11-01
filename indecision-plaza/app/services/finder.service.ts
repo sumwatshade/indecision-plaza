@@ -25,7 +25,7 @@ export class FinderService {
       "latitude":"43.144033",
       "longitude":"-77.589710",
       "open_now":"true",
-      "limit":"50"
+      "limit":"20"
     }
     let url = this.makeUrl(FinderService.API_URL,params)
     return this.http.get(url,{headers:headers}).map(r => r.json());

@@ -20,8 +20,11 @@ export class FoodFinderComponent {
   }
 
   setInfo(business): void {
-    this.foodInfo = business.name;
-    console.log(this.foodInfo);
+    this.foodInfo = business.name + "\n"
+        + "\t" + business.location.address1 + "\n"
+        + "\tRating: " + business.rating + "\n"
+        + "\tPrice: " + business.price;
+
   }
   testPrint() {
     console.log("test")
