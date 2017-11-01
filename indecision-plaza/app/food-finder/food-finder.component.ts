@@ -6,20 +6,23 @@ import { FinderService } from "../services/finder.service";
     templateUrl: "./food-finder/food-finder.component.html",
 })
 export class FoodFinderComponent {
-  public foodOptions;
+  public foodInfo: string = "";
+  public chosenPlace;
   constructor(private foodSvc: FinderService) { }
 
   findFood(){
     this.foodSvc.getNearbyFood().forEach((data) => {
-      console.log(data.total)
-      for(let foodPlace of data.businesses){
-        console.log(foodPlace.name)
-      }
-
+      let places = data.businesses
+      this.chosenPlace = places[Math.floor(Math.random()*places.length)]
+      this.setInfo(this.chosenPlace)
     });
 
   }
 
+  setInfo(business): void {
+    this.foodInfo = business.name;
+    console.log(this.foodInfo);
+  }
   testPrint() {
     console.log("test")
   }

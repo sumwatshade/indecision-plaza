@@ -18,5 +18,6 @@ it shouldn't have any other siblings other than the <ActionBar> component.
 -->
 <StackLayout>
   <Label text="Hello!"></Label>
-  <Button text="Pick a Restaraunt!" (tap)="findFood()"></Button>
+  <Button class="btn btn-primary btn-active p-5 m-5" text="Pick a Restaraunt!" (tap)="findFood()"></Button>
+  <Label class="h3 p-15" [text]="foodInfo" textWrap="true"></Label>
 </StackLayout>
