@@ -25,7 +25,7 @@ export class FinderService {
     headers.append("Authorization","Bearer " + this.auth_token)
     let params = {
       "radius":"3200",
-      "term":"food",
+      "categories":"restaurants",
       "latitude":this.currentLocation.latitude,
       "longitude":this.currentLocation.longitude,
       "open_now":"true",
