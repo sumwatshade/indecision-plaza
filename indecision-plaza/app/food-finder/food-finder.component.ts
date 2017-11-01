@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FinderService } from "../services/finder.service";
+import { Location, isEnabled, enableLocationRequest, getCurrentLocation, watchLocation, distance, clearWatch } from "nativescript-geolocation";
 
 @Component({
     selector: "food-finder",
@@ -8,7 +9,10 @@ import { FinderService } from "../services/finder.service";
 export class FoodFinderComponent {
   public foodInfo: string = "";
   public chosenPlace;
-  constructor(private foodSvc: FinderService) { }
+  public currentLocation: Location;
+  constructor(private foodSvc: FinderService) {
+    enableLocationRequest();
+  }
 
   findFood(){
     this.foodSvc.getNearbyFood().forEach((data) => {
@@ -22,11 +26,17 @@ export class FoodFinderComponent {
   setInfo(business): void {
     this.foodInfo = business.name + "\n"
         + "\t" + business.location.address1 + "\n"
+        + "\t" + business.location.city + ", " + business.location.state + "\n"
         + "\tRating: " + business.rating + "\n"
         + "\tPrice: " + business.price;
 
   }
+
   testPrint() {
     console.log("test")
+  }
+
+  ngOnInit() {
+    this.foodSvc.setLocation();
   }
 }

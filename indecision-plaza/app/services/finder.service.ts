@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Http, Headers, Response } from "@angular/http";
 import { Observable as RxObservable } from "rxjs/Observable";
+import { Location, isEnabled, enableLocationRequest, getCurrentLocation, watchLocation, distance, clearWatch } from "nativescript-geolocation";
 
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
@@ -10,20 +11,23 @@ export class FinderService {
   private static readonly API_URL = "https://api.yelp.com/v3/businesses/search";
   private static readonly AUTH_URL = "https://api.yelp.com/oauth2/token";
   private auth_token: string;
+  private currentLocation: Location;
 
   constructor(private http: Http) {
     this.getAuth().forEach(r => this.auth_token = r.access_token);
+
   }
 
   getNearbyFood() {
+    this.setLocation()
     let headers = new Headers()
 
     headers.append("Authorization","Bearer " + this.auth_token)
     let params = {
       "radius":"3200",
       "term":"food",
-      "latitude":"43.144033",
-      "longitude":"-77.589710",
+      "latitude":this.currentLocation.latitude,
+      "longitude":this.currentLocation.longitude,
       "open_now":"true",
       "limit":"20"
     }
@@ -45,6 +49,11 @@ export class FinderService {
     return baseUrl + "?" + Object.keys(params).map(function(k) {
     return encodeURIComponent(k) + '=' + encodeURIComponent(params[k])
 }).join('&')
+  }
+
+  setLocation() {
+    getCurrentLocation({}).then((loc) => {this.currentLocation = loc;})
+                          .catch((emptyPromise) => console.log(emptyPromise))
   }
 
 }
