@@ -1,15 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { FinderService } from "../services/finder.service";
 import { Location, isEnabled, enableLocationRequest, getCurrentLocation, watchLocation, distance, clearWatch } from "nativescript-geolocation";
-
+import { Business } from "../entities/business";
 @Component({
     selector: "food-finder",
-    styleUrls: ["./food-finder.component.css"],
-    templateUrl: "./food-finder.component.html",
+    styleUrls: ["./food-finder/food-finder.component.css"],
+    templateUrl: "./food-finder/food-finder.component.html",
 })
 export class FoodFinderComponent {
   public foodInfo: string = "";
-  public chosenPlace;
+  public chosenPlace: Business;
   public currentLocation: Location;
   constructor(private foodSvc: FinderService) {
     enableLocationRequest();
@@ -18,7 +18,7 @@ export class FoodFinderComponent {
   findFood(){
     this.foodSvc.getNearbyFood().forEach((data) => {
       let places = data.businesses
-      this.chosenPlace = places[Math.floor(Math.random()*places.length)]
+      this.chosenPlace = new Business(places[Math.floor(Math.random()*places.length)]);
       if(this.chosenPlace === undefined || this.chosenPlace === null)
         this.foodInfo = "No food places in your area";
       else
@@ -27,12 +27,8 @@ export class FoodFinderComponent {
 
   }
 
-  setInfo(business): void {
-    this.foodInfo = business.name + "\n"
-        + "\t" + business.location.address1 + "\n"
-        + "\t" + business.location.city + ", " + business.location.state + "\n"
-        + "\tRating: " + business.rating + "\n"
-        + "\tPrice: " + business.price;
+  setInfo(business: Business): void {
+    this.foodInfo = business.toLongString();
 
   }
 

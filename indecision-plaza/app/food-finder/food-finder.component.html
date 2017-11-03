@@ -16,7 +16,7 @@ http://docs.telerik.com/devtools/nativescript-ui/Controls/Angular/SideDrawer/get
 The RadSideDrawer component is designed to be used as a root element and
 it shouldn't have any other siblings other than the <ActionBar> component.
 -->
-<StackLayout>
+<StackLayout class="action-bar">
   <Label class="found-result h3 p-15" [text]="foodInfo" textWrap="true"></Label>
   <Button class="select-finder btn btn-primary btn-active p-5 m-5" text="Pick a Restaraunt!" (tap)="findFood()"></Button>
 </StackLayout>
