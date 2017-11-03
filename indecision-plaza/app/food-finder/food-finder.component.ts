@@ -19,7 +19,10 @@ export class FoodFinderComponent {
     this.foodSvc.getNearbyFood().forEach((data) => {
       let places = data.businesses
       this.chosenPlace = places[Math.floor(Math.random()*places.length)]
-      this.setInfo(this.chosenPlace)
+      if(this.chosenPlace === undefined || this.chosenPlace === null)
+        this.foodInfo = "No food places in your area";
+      else
+        this.setInfo(this.chosenPlace);
     });
 
   }
