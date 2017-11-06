@@ -1,8 +1,11 @@
 <StackLayout>
-  <Image [src]="business.imageUrl"></Image>
-  <Label [text]="business.name" class="info-name"></Label>
-  <Label [text]="business.basicAddress" class="info-basic"></Label>
-  <Label text="Distance: {{business.distance}} miles" class="info-basic"></Label>
-  <Label text="Rating: {{business.rating}}" class="info-basic"></Label>
-  <Label text="Price: {{business.price}}" class="info-basic"></Label>
+  <Image class="info-image" [src]="business.imageUrl"></Image>
+  <StackLayout class="info-text">
+    <Label [text]="business.name" class="info-name"></Label>
+    <Label [text]="business.basicAddress" class="info-basic"></Label>
+    <Label text="Distance: {{business.distance}} miles" class="info-basic"></Label>
+    <Label text="Rating: {{business.rating}}" class="info-basic"></Label>
+    <Label text="Price: {{business.price}}" class="info-basic"></Label>
+    <Label text="Phone: {{business.phoneNumber}}" class="info-basic"></Label>
+  </StackLayout>
 </StackLayout>

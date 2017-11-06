@@ -6,7 +6,7 @@ import { NativeScriptHttpModule } from "nativescript-angular/http";
 
 import { FinderService } from "./services/finder.service";
 import { FoodFinderComponent } from "./food-finder/food-finder.component";
-
+import { InfoCardComponent } from "./info-card/info-card.component"
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
@@ -25,6 +25,7 @@ import { FoodFinderComponent } from "./food-finder/food-finder.component";
     declarations: [
         AppComponent,
         FoodFinderComponent,
+        InfoCardComponent,
     ],
     providers: [
         FinderService

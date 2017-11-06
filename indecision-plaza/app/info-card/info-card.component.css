@@ -1,0 +1,17 @@
+.info-image {
+  margin: 15px;
+  height: 40%;
+}
+
+.info-text {
+  height: 25%;
+}
+
+.info-name {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.info-basic {
+  font-size: 20px;
+}
