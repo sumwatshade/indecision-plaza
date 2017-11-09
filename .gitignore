@@ -1,5 +1,7 @@
-# No build/dependencies
+# No build/dependencies/reports
 node_modules
 platforms
+report
+
 # No generated files
 *.js
