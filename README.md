@@ -27,7 +27,20 @@ tns run [platform]
 
 ### Deployment
 
-Work in progress...
+Running the `tns run` commands will produce rudimentary builds of the apk in the `[platform]/build` directory. 
+However, to extract further efficiency, we use [Webpack](https://docs.nativescript.org/angular/best-practices/bundling-with-webpack) 
+to bundle our application. Execute these commands to create a compressed build file for each platform:
+
+```
+npm run build-android-bundle
+```
+```
+npm run build-ios-bundle
+```
+
+### Publishing
+
+In Progress...
 
 ## Technologies Used
 * [Nativescript](https://docs.nativescript.org/angular/start/introduction)
