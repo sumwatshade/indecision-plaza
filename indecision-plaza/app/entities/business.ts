@@ -15,6 +15,8 @@ export class Business {
   public rating: number;
   /** Price of business. */
   public price: string;
+  /** Yelp website URL */
+  public yelpURL: string;
 
   public constructor(json) {
     this.name = json.name;
@@ -24,6 +26,7 @@ export class Business {
     this.basicAddress = json.location.address1;
     this.rating = json.rating;
     this.price = json.price;
+    this.yelpURL = json.url;
   }
 
   public toLongString() {
