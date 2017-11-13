@@ -13,11 +13,19 @@ export class FinderService {
   private auth_token: string;
   private currentLocation: Location;
 
+  /*
+   *  For more information on REST, see https://docs.nativescript.org/angular/code-samples/http
+   */
   constructor(private http: Http) {
     this.getAuth().forEach(r => this.auth_token = r.access_token);
 
   }
 
+  /*
+   *  Find nearby places for food using Yelps Business Search API
+   *
+   *  For more information, see https://www.yelp.com/developers/documentation/v3/business_search
+   */
   getNearbyFood() {
     this.setLocation()
     let headers = new Headers()
@@ -35,6 +43,11 @@ export class FinderService {
     return this.http.get(url, { headers: headers }).map(r => r.json());
   }
 
+  /*
+   *  Leverage Yelp Auth API to get access token
+   *
+   *  For more information, see https://www.yelp.com/developers/documentation/v3/authentication
+   */
   getAuth() {
     let authBody = {
       "client_id": "wNu2oeFkVUHt4APXLJsA0g",
@@ -45,12 +58,20 @@ export class FinderService {
     return this.http.post(url, {}).map(res => res.json())
   }
 
+  /*
+   *  Construct a parameterized URL for use with APIs
+   */
   makeUrl(baseUrl, params) {
     return baseUrl + "?" + Object.keys(params).map(function(k) {
       return encodeURIComponent(k) + '=' + encodeURIComponent(params[k])
     }).join('&')
   }
 
+  /*
+   *  Finds and sets the current location of the user
+   *
+   *  See Nativescript docs on Hardware access: https://docs.nativescript.org/angular/hardware/location
+   */
   setLocation() {
     getCurrentLocation({}).then((loc) => { this.currentLocation = loc; })
       .catch((emptyPromise) => console.log(emptyPromise))
