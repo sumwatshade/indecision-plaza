@@ -1,12 +1,11 @@
 <ActionBar class="action-bar">
 
-    <!--
+  <!--
     Use the ActionItem for IOS with position set to left. Using the NavigationButton as a side-drawer button in iOS is not possible, because its function is to always navigate back in the application.
     -->
-    <ActionItem  android:visibility="collapsed" (tap)="testPrint()"
-        ios.position="left">
-    </ActionItem>
-    <Label class="action-bar-title" text="Indecision Plaza"></Label>
+  <ActionItem android:visibility="collapsed" (tap)="testPrint()" ios.position="left">
+  </ActionItem>
+  <Label class="action-bar-title" text="Indecision Plaza"></Label>
 </ActionBar>
 
 <!--

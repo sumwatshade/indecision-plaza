@@ -21,7 +21,7 @@ export class Business {
   public constructor(json) {
     this.name = json.name;
     this.phoneNumber = json.display_phone;
-    this.distance = (json.distance/Business.METERS_IN_MILE).toFixed(1);
+    this.distance = (json.distance / Business.METERS_IN_MILE).toFixed(1);
     this.imageUrl = json.image_url;
     this.basicAddress = json.location.address1;
     this.rating = json.rating;
@@ -31,16 +31,16 @@ export class Business {
 
   public toLongString() {
     return this.name + "\n"
-        + "\t" + this.basicAddress + "\n"
-        + "\tDistance: " + this.distance + " miles\n"
-        + "\tRating: " + this.rating + "\n"
-        + "\tPrice: " + this.price + "\n"
-        + "\tPhone: " + this.phoneNumber
+      + "\t" + this.basicAddress + "\n"
+      + "\tDistance: " + this.distance + " miles\n"
+      + "\tRating: " + this.rating + "\n"
+      + "\tPrice: " + this.price + "\n"
+      + "\tPhone: " + this.phoneNumber
   }
 
   public toShortString() {
     return this.name + "\n"
-        + "\t" + this.basicAddress + "\n"
-        + "\tDistance: " + this.distance + " meters\n"
+      + "\t" + this.basicAddress + "\n"
+      + "\tDistance: " + this.distance + " meters\n"
   }
 }
