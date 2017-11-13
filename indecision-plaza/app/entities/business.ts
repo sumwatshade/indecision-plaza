@@ -18,6 +18,14 @@ export class Business {
   /** Yelp website URL */
   public yelpURL: string;
 
+
+  /**
+   *  Constructor for the Business Entity
+   *
+   *  Pulls information from a JSON object defined by the Yelp
+   *  Business Search API: https://www.yelp.com/developers/documentation/v3/business_search
+   *
+   */
   public constructor(json) {
     this.name = json.name;
     this.phoneNumber = json.display_phone;
