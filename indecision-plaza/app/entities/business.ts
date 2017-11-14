@@ -37,6 +37,9 @@ export class Business {
     this.yelpURL = json.url;
   }
 
+  /*
+   *  Get long-format string information
+   */
   public toLongString() {
     return this.name + "\n"
       + "\t" + this.basicAddress + "\n"
@@ -46,6 +49,9 @@ export class Business {
       + "\tPhone: " + this.phoneNumber
   }
 
+  /*
+   *  Get short-format string information
+   */
   public toShortString() {
     return this.name + "\n"
       + "\t" + this.basicAddress + "\n"
