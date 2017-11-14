@@ -17,8 +17,15 @@ export class FoodFinderComponent {
 
   findFood() {
     this.foodSvc.getNearbyFood().forEach((data) => {
+      // Grab the list of businesses from the JSON
       let places = data.businesses
-      this.chosenPlace = new Business(places[Math.floor(Math.random() * places.length)]);
+      // Choose one random business
+      let chosenPlaceJSON = places[Math.floor(Math.random() * places.length)]
+      // Convert chosen business into an Entity that is read into the info card
+      this.chosenPlace = new Business(chosenPlaceJSON);
+
+      // Handles the case that no food places are found
+      // TODO: Implement a Utility that can perform these checks as one function
       if (this.chosenPlace === undefined || this.chosenPlace === null)
         this.foodInfo = "No food places in your area";
       else
