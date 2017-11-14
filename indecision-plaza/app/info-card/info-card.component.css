@@ -1,7 +1,7 @@
 .info-image {
-  height: 250;
-  width: 250;
+  max-height: 43%;  
 }
+
 .info-text {
   height: 40%;
   margin-top: 10px;
