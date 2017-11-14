@@ -1,11 +1,12 @@
-<StackLayout>
-  <Image class="info-image" [src]="business.imageUrl"></Image>
+<StackLayout *ngIf="business != null && business != undefined">
+  <Image class="img-circle" height="300" width="300" [src]="business.imageUrl"></Image>
   <StackLayout class="info-text">
     <Label [text]="business.name" class="info-name"></Label>
     <Label [text]="business.basicAddress" class="info-basic"></Label>
     <Label text="Distance: {{business.distance}} miles" class="info-basic"></Label>
     <Label text="Rating: {{business.rating}}" class="info-basic"></Label>
     <Label text="Price: {{business.price}}" class="info-basic"></Label>
-    <Button text="{{business.phoneNumber}}" class="info-basic btn btn-secondary"></Button>
+    <Label text="Phone: {{business.phoneNumber}}" class="info-basic"></Label>
+    <Button [text]="buttonText" class="info-basic btn btn-secondary" (tap)="openWebsite()"></Button>
   </StackLayout>
 </StackLayout>
