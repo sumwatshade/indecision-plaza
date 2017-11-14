@@ -22,9 +22,11 @@ tns platform add [platform]
 ```
 Then, to begin simulation, run
 ```
-tns run [platform]
+npm run start-android-bundle
 ```
-
+```
+npm run start-ios-bundle
+```
 ### Deployment
 
 Running the `tns run` commands will produce rudimentary builds of the apk in the `[platform]/build` directory. 
