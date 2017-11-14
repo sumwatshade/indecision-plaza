@@ -10,3 +10,6 @@
     <Button [text]="buttonText" class="info-basic btn btn-secondary" (tap)="openWebsite()"></Button>
   </StackLayout>
 </StackLayout>
+<StackLayout *ngIf="business == null || business == undefined" height="80%">
+  <Label text="Press the button to find nearby food!" class="info-blank"></Label>
+</StackLayout>

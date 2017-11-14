@@ -3,10 +3,16 @@
   height: 300;
   width: 300;
 }
-
 .info-text {
   height: 35%;
   margin-top: 10px;
+}
+
+.info-blank {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20%;
 }
 
 .info-name {
