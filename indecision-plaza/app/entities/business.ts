@@ -1,6 +1,7 @@
 export class Business {
 
   private static readonly METERS_IN_MILE = 1609.34;
+  private static readonly BLANK_IMAGE_PATH = "res://no-image.png"
   /** Name of the business. */
   public name: string;
   /** Phone number for the business. */
@@ -30,7 +31,7 @@ export class Business {
     this.name = json.name;
     this.phoneNumber = json.display_phone;
     this.distance = (json.distance / Business.METERS_IN_MILE).toFixed(1);
-    this.imageUrl = json.image_url;
+    this.imageUrl = (json.image_url !== undefined && json.image_url) !== null ? json.image_url: Business.BLANK_IMAGE_PATH;
     this.basicAddress = json.location.address1;
     this.rating = json.rating;
     this.price = json.price;
