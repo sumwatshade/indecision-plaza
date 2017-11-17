@@ -15,7 +15,7 @@ export class FoodFinderComponent {
 
   public categories: Array<string>;
   public categoryMap: {[key: string]: string} = {};
-  public chosenCategory: string;
+  public chosenCategory: string = "Resturaunts";
   constructor(private foodSvc: FinderService) {
     enableLocationRequest();
     this.chosenPlace = Business.makeEmpty();
