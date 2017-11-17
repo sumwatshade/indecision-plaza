@@ -1,17 +1,13 @@
+.info {
+  height: 63%;
+}
 .info-image {
-  max-height: 43%;  
+  max-height: 43%;
 }
 
 .info-text {
   height: 40%;
   margin-top: 10px;
-}
-
-.info-blank {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 20%;
 }
 
 .info-name {

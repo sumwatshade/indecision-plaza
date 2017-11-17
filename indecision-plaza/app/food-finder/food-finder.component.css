@@ -1,9 +1,12 @@
 .found-result {
   font-size: 25px;
   text-align: left;
-  height: 83%;
+  height: 63%;
 }
 
+.categories {
+  height: 20%;
+}
 .select-finder {
   height: 15%;
   margin-bottom: 2%;
