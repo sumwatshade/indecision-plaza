@@ -15,12 +15,12 @@ export class FoodFinderComponent {
 
   public categories: Array<string>;
   public categoryMap: {[key: string]: string} = {};
-  public chosenCategory: string = "Restaraunts";
+  public chosenCategory: string = "Restaurants";
   constructor(private foodSvc: FinderService) {
     enableLocationRequest();
     this.chosenPlace = Business.makeEmpty();
     this.categories = ["Bars","Coffee/Tea","Restaraunts","Breakfast","Fast Food"];
-    this.categoryMap["Restaraunts"] = "restaraunts";
+    this.categoryMap["Restaurants"] = "restaurants";
     this.categoryMap["Bars"] = "bars";
     this.categoryMap["Coffee/Tea"] = "coffee";
     this.categoryMap["Breakfast"] = "breakfast_brunch";

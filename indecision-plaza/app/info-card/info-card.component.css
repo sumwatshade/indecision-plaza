@@ -6,7 +6,7 @@
 }
 
 .info-text {
-  height: 40%;
+  min-height: 40%;
   margin-top: 10px;
 }
 
