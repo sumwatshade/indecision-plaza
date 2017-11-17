@@ -17,8 +17,6 @@ it shouldn't have any other siblings other than the <ActionBar> component.
 -->
 <StackLayout class="action-bar">
   <info-card class="found-result" [business]="chosenPlace"></info-card>
-  <ListPicker [items]="categories" selectedIndex="0" (selectedIndexChange)="selectedIndexChanged($event)" class="p-15"></ListPicker>
-
-  <!-- <Label class="found-result h3 p-15" [text]="foodInfo" textWrap="true"></Label> -->
+  <ListPicker class="categories" [items]="categories" selectedIndex="2" (selectedIndexChange)="selectedIndexChanged($event)" ></ListPicker>
   <Button class="select-finder btn btn-primary btn-active p-5 m-5" text="Pick a Restaraunt!" (tap)="findFood()"></Button>
 </StackLayout>
