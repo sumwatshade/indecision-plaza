@@ -1,3 +1,4 @@
+import { LangUtils } from "../common/LangUtils"
 export class Business {
 
   private static readonly METERS_IN_MILE = 1609.34;
@@ -27,13 +28,13 @@ export class Business {
    *
    */
   public constructor(json) {
-    this.name = json.name;
-    this.phoneNumber = json.display_phone;
-    this.distance = (json.distance / Business.METERS_IN_MILE).toFixed(1);
-    this.imageUrl = json.image_url;
-    this.basicAddress = json.location.address1;
-    this.rating = json.rating;
-    this.price = json.price;
+    this.name = LangUtils.exists(json.name) ? json.name : "Press the button to get results!";
+    this.phoneNumber = LangUtils.exists(json.display_phone) ? json.display_phone : null;
+    this.distance = LangUtils.exists(json.distance) ? (json.distance / Business.METERS_IN_MILE).toFixed(1) : null;
+    this.imageUrl = LangUtils.exists(json.image_url) ? json.image_url : null;
+    this.basicAddress = LangUtils.exists(json.location) ? json.location.address1 : null;
+    this.rating = LangUtils.exists(json.rating) ? json.rating : null;
+    this.price = LangUtils.exists(json.price) ? json.price : null;
     this.yelpURL = json.url;
   }
 
@@ -41,11 +42,11 @@ export class Business {
    *  Get long-format string information
    */
   public toLongString() {
-    return this.name + "\n"
-      + "\t" + this.basicAddress + "\n"
-      + "\tDistance: " + this.distance + " miles\n"
-      + "\tRating: " + this.rating + "\n"
-      + "\tPrice: " + this.price + "\n"
+    return this.name + 
+      + "\t" + this.basicAddress
+      + "\tDistance: " + this.distance + " miles"
+      + "\tRating: " + this.rating
+      + "\tPrice: " + this.price
       + "\tPhone: " + this.phoneNumber
   }
 
@@ -56,5 +57,10 @@ export class Business {
     return this.name + "\n"
       + "\t" + this.basicAddress + "\n"
       + "\tDistance: " + this.distance + " meters\n"
+  }
+
+  public static makeEmpty(): Business {
+    return new Business({});
+
   }
 }
