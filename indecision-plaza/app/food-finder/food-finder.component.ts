@@ -11,12 +11,22 @@ export class FoodFinderComponent {
   public foodInfo: string = "";
   public chosenPlace: Business;
   public currentLocation: Location;
+
+  public categories: Array<string>;
+  public categoryMap: {[key: string]: string} = {};
+  public chosenCategory: string;
   constructor(private foodSvc: FinderService) {
     enableLocationRequest();
+    this.categories = ["Restaraunts","Bars","Coffee/Tea","Breakfast"];
+    this.categoryMap["Restaraunts"] = "restaraunts";
+    this.categoryMap["Bars"] = "bars";
+    this.categoryMap["Coffee/Tea"] = "coffee";
+    this.categoryMap["Breakfast"] = "breakfast_brunch";
+
   }
 
   findFood() {
-    this.foodSvc.getNearbyFood().forEach((data) => {
+    this.foodSvc.getNearbyFood("restaraunts").forEach((data) => {
       // Grab the list of businesses from the JSON
       let places = data.businesses
       // Choose one random business

@@ -26,14 +26,14 @@ export class FinderService {
    *
    *  For more information, see https://www.yelp.com/developers/documentation/v3/business_search
    */
-  getNearbyFood() {
+  getNearbyFood(category: string) {
     this.setLocation()
     let headers = new Headers()
 
     headers.append("Authorization", "Bearer " + this.auth_token)
     let params = {
       "radius": "3200",
-      "categories": "restaurants",
+      "categories": category,
       "latitude": this.currentLocation.latitude,
       "longitude": this.currentLocation.longitude,
       "open_now": "true",
