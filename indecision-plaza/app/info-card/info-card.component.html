@@ -1,5 +1,5 @@
-<ScrollLayout *ngIf="business != null && business != undefined">
-  <Image class="img-circle info-image" height="250" width="250" [src]="business.imageUrl"></Image>
+ <StackLayout class="info">
+   <Image *ngIf="business.imageUrl" class="img-circle info-image" height="250" width="250" [src]="business.imageUrl"></Image>
   <StackLayout class="info-text">
     <Label [text]="business.name" class="info-name"></Label>
     <Label [text]="business.basicAddress" class="info-basic"></Label>
@@ -9,7 +9,4 @@
     <Label text="Phone: {{business.phoneNumber}}" class="info-basic"></Label>
     <Button [text]="buttonText" class="info-basic btn btn-secondary" (tap)="openWebsite()"></Button>
   </StackLayout>
-</ScrollLayout>
-<StackLayout *ngIf="business == null || business == undefined" height="80%">
-  <Label text="Press the button to find nearby food!" class="info-blank"></Label>
-</StackLayout>
+ </StackLayout>
