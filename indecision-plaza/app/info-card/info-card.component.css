@@ -12,11 +12,13 @@
 
 .info-name {
   font-size: 24px;
+  height: 100px;
   font-weight: bold;
   text-align: center;
 }
 
 .info-basic {
   font-size: 20px;
+  height: 70px;
   text-align: center;
 }
