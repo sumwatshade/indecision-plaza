@@ -43,11 +43,11 @@ export class Business {
    */
   public toLongString() {
     return this.name +
-      + "\t" + this.basicAddress
-      + "\tDistance: " + this.distance + " miles"
-      + "\tRating: " + this.rating
-      + "\tPrice: " + this.price
-      + "\tPhone: " + this.phoneNumber
+      + "\n\t" + this.basicAddress
+      + "\n\tDistance: " + this.distance + " miles"
+      + "\n\tRating: " + this.rating
+      + "\n\tPrice: " + this.price
+      + "\n\tPhone: " + this.phoneNumber
   }
 
   /*
