@@ -28,7 +28,7 @@ export class Business {
    *
    */
   public constructor(json) {
-    this.name = LangUtils.exists(json.name) ? json.name : "Press the button to get results!";
+    this.name = LangUtils.exists(json.name) ? json.name : "No businesses found.";
     this.phoneNumber = LangUtils.exists(json.display_phone) ? json.display_phone : null;
     this.distance = LangUtils.exists(json.distance) ? (json.distance / Business.METERS_IN_MILE).toFixed(1) : null;
     this.imageUrl = LangUtils.exists(json.image_url) ? json.image_url : null;
@@ -42,7 +42,7 @@ export class Business {
    *  Get long-format string information
    */
   public toLongString() {
-    return this.name + 
+    return this.name +
       + "\t" + this.basicAddress
       + "\tDistance: " + this.distance + " miles"
       + "\tRating: " + this.rating
@@ -61,6 +61,9 @@ export class Business {
 
   public static makeEmpty(): Business {
     return new Business({});
+  }
 
+  public static makeInit(): Business {
+    return new Business({"name":"Press the button to get search results."});
   }
 }
