@@ -19,7 +19,7 @@ export class FoodFinderComponent {
   constructor(private foodSvc: FinderService) {
     enableLocationRequest();
     this.chosenPlace = Business.makeEmpty();
-    this.categories = ["Bars","Coffee/Tea","Restaraunts","Breakfast","Fast Food"];
+    this.categories = ["Bars","Coffee/Tea","Restaurants","Breakfast","Fast Food"];
     this.categoryMap["Restaurants"] = "restaurants";
     this.categoryMap["Bars"] = "bars";
     this.categoryMap["Coffee/Tea"] = "coffee";
