@@ -7,6 +7,6 @@
     <Label row=4 class="info-basic" *ngIf="business.rating" text="Rating: {{business.rating}}"></Label>
     <Label row=5 class="info-basic" *ngIf="business.price" text="Price: {{business.price}}"></Label>
     <Label row=6 class="info-basic" *ngIf="business.phoneNumber" text="Phone: {{business.phoneNumber}}"></Label>
-    <Button row=7 class="info-basic btn"*ngIf="business.distance" [text]="buttonText" (tap)="openWebsite()"></Button>
+    <Button row=7 class="info-basic btn btn-secondary"*ngIf="business.distance" [text]="buttonText" (tap)="openWebsite()"></Button>
   </GridLayout>
 </ScrollView>
