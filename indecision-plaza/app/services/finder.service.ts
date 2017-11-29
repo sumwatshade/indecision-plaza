@@ -27,8 +27,11 @@ export class FinderService {
   }
 
   getFoodFromCache(category: string): Business {
-    if(this.cachedResults.length == 0 || this.refreshCache){
+
+    if(this.cachedResults.length == 0 || this.cachedCategory != category ||this.refreshCache){
        this.refreshCache = false;
+       this.cachedCategory = category;
+       this.cachedResults = [];
        this.getNearbyFood(category).forEach((data) => {
         data.businesses.forEach((businessJSON) => {
           this.cachedResults.push(new Business(businessJSON));
