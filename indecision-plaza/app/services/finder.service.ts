@@ -31,8 +31,8 @@ export class FinderService {
     if(this.cachedResults.length == 0 || this.cachedCategory != category ||this.refreshCache){
        this.refreshCache = false;
        this.cachedCategory = category;
-       this.cachedResults = [];
        this.getNearbyFood(category).forEach((data) => {
+        this.cachedResults = [];
         data.businesses.forEach((businessJSON) => {
           this.cachedResults.push(new Business(businessJSON));
         });
@@ -42,18 +42,10 @@ export class FinderService {
         }
       });
     }
-
-    if(this.cachedResults.length == 1) {
-      this.refreshCache = true;
-      return this.cachedResults[0];
-    }
-    else {
-      let index = Math.floor( Math.random()*this.cachedResults.length );
-      let result = this.cachedResults[index]
-      this.cachedResults.splice( index, 1 )
-      return result;
-    }
-
+    let index = Math.floor( Math.random()*this.cachedResults.length );
+    let result = this.cachedResults[index]
+    this.cachedResults.splice( index, 1 )
+    return result;
   }
   /*
    *  Find nearby places for food using Yelps Business Search API
