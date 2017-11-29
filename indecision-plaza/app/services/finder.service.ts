@@ -16,6 +16,7 @@ export class FinderService {
 
   private cachedCategory: string;
   private cachedResults: Array<Business> = [];
+  private refreshCache: boolean = true
 
   /*
    *  For more information on REST, see https://docs.nativescript.org/angular/code-samples/http
@@ -26,19 +27,30 @@ export class FinderService {
   }
 
   getFoodFromCache(category: string): Business {
-    if(this.cachedResults.length == 0 || category !== this.cachedCategory){
-      this.cachedCategory = category;
-      this.getNearbyFood(category).forEach((data) => {
+    if(this.cachedResults.length == 0 || this.refreshCache){
+       this.refreshCache = false;
+       this.getNearbyFood(category).forEach((data) => {
         data.businesses.forEach((businessJSON) => {
           this.cachedResults.push(new Business(businessJSON));
         });
+        if(this.cachedResults.length == 0){
+          this.refreshCache = true;
+          return Business.makeEmpty();
+        }
       });
     }
-    if(this.cachedResults.length == 0) return Business.makeEmpty();
-    let index = Math.floor( Math.random()*this.cachedResults.length );
-    let result = this.cachedResults[index]
-    this.cachedResults.splice( index, 1 )
-    return result;
+
+    if(this.cachedResults.length == 1) {
+      this.refreshCache = true;
+      return this.cachedResults[0];
+    }
+    else {
+      let index = Math.floor( Math.random()*this.cachedResults.length );
+      let result = this.cachedResults[index]
+      this.cachedResults.splice( index, 1 )
+      return result;
+    }
+
   }
   /*
    *  Find nearby places for food using Yelps Business Search API
