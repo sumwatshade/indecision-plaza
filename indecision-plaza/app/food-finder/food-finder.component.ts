@@ -5,8 +5,8 @@ import { Business } from "../entities/business";
 import { ListPicker } from "ui/list-picker";
 @Component({
   selector: "food-finder",
-  styleUrls: ["./food-finder/food-finder.component.css"],
-  templateUrl: "./food-finder/food-finder.component.html",
+  styleUrls: ["./food-finder.component.css"],
+  templateUrl: "./food-finder.component.html",
 })
 export class FoodFinderComponent {
   public foodInfo: string = "";
