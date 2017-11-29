@@ -1,26 +1,30 @@
+.info {
+  height: 63%;
+}
 .info-image {
-  max-height: 43%;  
+  max-height: 23%;
 }
 
 .info-text {
-  height: 40%;
+  min-height: 40%;
   margin-top: 10px;
-}
-
-.info-blank {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 20%;
 }
 
 .info-name {
   font-size: 24px;
+  height: 125px;
   font-weight: bold;
   text-align: center;
 }
 
 .info-basic {
   font-size: 20px;
+  height: 100px;
+  text-align: center;
+}
+
+.info-button {
+  font-size: 20px;
+  height: 200px;
   text-align: center;
 }

@@ -1,15 +1,12 @@
-<StackLayout *ngIf="business != null && business != undefined">
-  <Image class="img-circle info-image" height="250" width="250" [src]="business.imageUrl"></Image>
-  <StackLayout class="info-text">
-    <Label [text]="business.name" class="info-name"></Label>
-    <Label [text]="business.basicAddress" class="info-basic"></Label>
-    <Label text="Distance: {{business.distance}} miles" class="info-basic"></Label>
-    <Label text="Rating: {{business.rating}}" class="info-basic"></Label>
-    <Label text="Price: {{business.price}}" class="info-basic"></Label>
-    <Label text="Phone: {{business.phoneNumber}}" class="info-basic"></Label>
-    <Button [text]="buttonText" class="info-basic btn btn-secondary" (tap)="openWebsite()"></Button>
-  </StackLayout>
-</StackLayout>
-<StackLayout *ngIf="business == null || business == undefined" height="80%">
-  <Label text="Press the button to find nearby food!" class="info-blank"></Label>
-</StackLayout>
+ <ScrollView class="info">
+  <GridLayout class="info-text" rows="auto auto auto auto auto auto auto auto">
+    <Label row=0 class="info-name" [text]="business.name"></Label>
+    <Label row=1 class="info-basic" *ngIf="business.basicAddress" [text]="business.basicAddress"></Label>
+    <Label row=2 class="info-basic" *ngIf="business.distance" text="Distance: {{business.distance}} miles"></Label>
+    <Label row=3 class="info-basic" *ngIf="business.rating" text="Rating: {{business.rating}}"></Label>
+    <Label row=4 class="info-basic" *ngIf="business.price" text="Price: {{business.price}}"></Label>
+    <Label row=5 class="info-basic" *ngIf="business.phoneNumber" text="Phone: {{business.phoneNumber}}"></Label>
+    <Button row=6 class="info-button btn btn-secondary"*ngIf="business.distance" [text]="buttonText" (tap)="openWebsite()"></Button>
+    <Image row=7 *ngIf="business.imageUrl" class="img-circle info-image" height="250" width="250" [src]="business.imageUrl"></Image>
+  </GridLayout>
+</ScrollView>

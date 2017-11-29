@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Business } from "../entities/business";
-import * as TNSPermissions from "nativescript-permissions"
-import * as TNSPhone from "nativescript-phone"
 import * as TNSUtils from "utils/utils";
 declare var android;
 
@@ -19,17 +17,6 @@ export class InfoCardComponent {
 
   ngOnChanges() {
     this.buttonText = this.business != null && this.business != undefined ? "Website" : "";
-  }
-
-  dialNumber() {
-    TNSPermissions.requestPermission(android.Manifest.permission.CALL_PHONE,
-                                    "App Needs This Permission To Make Phone Calls")
-    .then(() =>{
-      TNSPhone.dial(this.business.phoneNumber,false)
-    })
-    .catch(() =>{
-      console.log("Permission Denied.")
-    })
   }
 
   openWebsite() {
