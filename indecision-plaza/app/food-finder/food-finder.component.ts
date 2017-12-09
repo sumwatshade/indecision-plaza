@@ -17,7 +17,6 @@ export class FoodFinderComponent {
   public categoryMap: {[key: string]: string} = {};
   public chosenCategory: string = "Restaurants";
   constructor(private foodSvc: FinderService) {
-    enableLocationRequest();
     this.chosenPlace = Business.makeInit();
     this.categories = ["Bars","Coffee/Tea","Restaurants","Breakfast","Fast Food"];
     this.categoryMap["Restaurants"] = "restaurants";
@@ -29,21 +28,23 @@ export class FoodFinderComponent {
   }
 
   findFood() {
-    this.foodSvc.getNearbyFood(this.categoryMap[this.chosenCategory]).forEach((data) => {
-      // Grab the list of businesses from the JSON
-      let places = data.businesses
-
-      if(places.length !== 0) {
-        // Choose one random business
-        let chosenPlaceJSON = places[Math.floor(Math.random() * places.length)]
-        // Convert chosen business into an Entity that is read into the info card
-        this.chosenPlace = new Business(chosenPlaceJSON);
-        console.log(this.chosenPlace.toLongString())
-      }
-      else {
-        this.chosenPlace = Business.makeEmpty();
-        console.log("No results were found");
-      }
+    enableLocationRequest();
+    this.chosenPlace = this.foodSvc.getFoodFromCache(this.categoryMap[this.chosenCategory])
+    // this.foodSvc.getNearbyFood(this.categoryMap[this.chosenCategory]).forEach((data) => {
+    //   // Grab the list of businesses from the JSON
+    //   let places = data.businesses
+    //
+    //   if(places.length !== 0) {
+    //     // Choose one random business
+    //     let chosenPlaceJSON = places[Math.floor(Math.random() * places.length)]
+    //     // Convert chosen business into an Entity that is read into the info card
+    //     this.chosenPlace = new Business(chosenPlaceJSON);
+    //     console.log(this.chosenPlace.toLongString())
+    //   }
+    //   else {
+    //     this.chosenPlace = Business.makeEmpty();
+    //     console.log("No results were found");
+    //   }
 
       // Handles the case that no food places are found
       // TODO: Implement a Utility that can perform these checks as one function
@@ -51,7 +52,7 @@ export class FoodFinderComponent {
         this.foodInfo = "No food places in your area";
       else
         this.setInfo(this.chosenPlace);
-    });
+
 
   }
 

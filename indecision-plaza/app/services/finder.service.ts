@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Http, Headers, Response } from "@angular/http";
 import { Observable as RxObservable } from "rxjs/Observable";
 import { Location, isEnabled, enableLocationRequest, getCurrentLocation, watchLocation, distance, clearWatch } from "nativescript-geolocation";
+import { Business } from "../entities/business";
 
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
@@ -13,6 +14,10 @@ export class FinderService {
   private auth_token: string;
   private currentLocation: Location;
 
+  private cachedCategory: string;
+  private cachedResults: Array<Business> = [];
+  private refreshCache: boolean = true
+
   /*
    *  For more information on REST, see https://docs.nativescript.org/angular/code-samples/http
    */
@@ -21,6 +26,27 @@ export class FinderService {
 
   }
 
+  getFoodFromCache(category: string): Business {
+
+    if(this.cachedResults.length == 0 || this.cachedCategory != category ||this.refreshCache){
+       this.refreshCache = false;
+       this.cachedCategory = category;
+       this.getNearbyFood(category).forEach((data) => {
+        this.cachedResults = [];
+        data.businesses.forEach((businessJSON) => {
+          this.cachedResults.push(new Business(businessJSON));
+        });
+        if(this.cachedResults.length == 0){
+          this.refreshCache = true;
+          return Business.makeEmpty();
+        }
+      });
+    }
+    let index = Math.floor( Math.random()*this.cachedResults.length );
+    let result = this.cachedResults[index]
+    this.cachedResults.splice( index, 1 )
+    return result;
+  }
   /*
    *  Find nearby places for food using Yelps Business Search API
    *
@@ -37,7 +63,7 @@ export class FinderService {
       "latitude": this.currentLocation.latitude,
       "longitude": this.currentLocation.longitude,
       "open_now": "true",
-      "limit": "20"
+      "limit": "30"
     }
     let url = this.makeUrl(FinderService.API_URL, params)
     return this.http.get(url, { headers: headers }).map(r => r.json());
