@@ -5,8 +5,8 @@ import { Business } from "../entities/business";
 import { ListPicker } from "ui/list-picker";
 @Component({
   selector: "food-finder",
-  styleUrls: ["./food-finder/food-finder.component.css"],
-  templateUrl: "./food-finder/food-finder.component.html",
+  styleUrls: ["./food-finder.component.css"],
+  templateUrl: "./food-finder.component.html",
 })
 export class FoodFinderComponent {
   public foodInfo: string = "";
@@ -29,9 +29,10 @@ export class FoodFinderComponent {
 
   findFood() {
     enableLocationRequest().then(() => {
-      console.log("Finding food...")
-      this.chosenPlace = this.foodSvc.getFoodFromCache(this.categoryMap[this.chosenCategory])
-      console.log(this.chosenPlace)
+      let apiResult = this.foodSvc.getFoodFromCache(this.categoryMap[this.chosenCategory])
+      if(apiResult != undefined && apiResult != null) {
+        this.chosenPlace = apiResult;
+      }
     })
     .catch((error) => {
       this.chosenPlace = Business.makeInit()
