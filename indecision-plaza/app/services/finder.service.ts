@@ -29,13 +29,11 @@ export class FinderService {
   getFoodFromCache(category: string): Business {
 
     if (this.cachedResults.length == 0 || this.cachedCategory != category) {
-      console.log("refreshing cache")
       this.cachedCategory = category;
       this.getNearbyFood(category).forEach((data) => {
         this.cachedResults = [];
         this.cachedResults = data.businesses.map((businessJSON) => new Business(businessJSON));
         if (this.cachedResults.length == 0) {
-          console.log("No businesses found")
           return Business.makeEmpty();
         }
         else {
