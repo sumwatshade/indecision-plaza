@@ -60,7 +60,7 @@ export class Business {
   }
 
   public static makeEmpty(): Business {
-    return new Business({});
+    return new Business({"name":"No Businesses found."});
   }
 
   public static makeInit(): Business {
