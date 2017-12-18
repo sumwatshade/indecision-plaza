@@ -28,16 +28,14 @@ export class FinderService {
 
   getFoodFromCache(category: string): Business {
 
-    if(this.cachedResults.length == 0 || this.cachedCategory != category || this.refreshCache){
+    if (this.cachedResults.length == 0 || this.cachedCategory != category) {
       console.log("refreshing cache")
-       this.refreshCache = false;
-       this.cachedCategory = category;
-       this.getNearbyFood(category).forEach((data) => {
+      this.cachedCategory = category;
+      this.getNearbyFood(category).forEach((data) => {
         this.cachedResults = [];
         this.cachedResults = data.businesses.map((businessJSON) => new Business(businessJSON));
-        if(this.cachedResults.length == 0){
+        if (this.cachedResults.length == 0) {
           console.log("No businesses found")
-          this.refreshCache = true;
           return Business.makeEmpty();
         }
         else {
@@ -52,9 +50,9 @@ export class FinderService {
   }
 
   private getRandomRestarauntFromCache(): Business {
-    let index = Math.floor( Math.random()*this.cachedResults.length );
+    let index = Math.floor(Math.random() * this.cachedResults.length);
     let result = this.cachedResults[index]
-    this.cachedResults.splice( index, 1 )
+    this.cachedResults.splice(index, 1)
     return result;
   }
 
