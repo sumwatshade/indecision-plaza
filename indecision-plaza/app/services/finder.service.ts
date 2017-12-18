@@ -23,18 +23,22 @@ export class FinderService {
    */
   constructor(private http: Http) {
     this.getAuth().forEach(r => this.auth_token = r.access_token);
-
   }
 
   getFoodFromCache(category: string): Business {
-
+    console.log("Cache:")
+    this.cachedResults.forEach((res)=> {
+      console.log(res.name)
+    })
     if (this.cachedResults.length == 0 || this.cachedCategory != category) {
       this.cachedCategory = category;
       this.getNearbyFood(category).forEach((data) => {
         this.cachedResults = [];
         this.cachedResults = data.businesses.map((businessJSON) => new Business(businessJSON));
         if (this.cachedResults.length == 0) {
-          return Business.makeEmpty();
+          console.log("Making empty business")
+          console.log(Business.makeInit().toLongString())
+          return Business.makeInit();
         }
         else {
           return this.getRandomRestarauntFromCache()

@@ -1,6 +1,6 @@
  <ScrollView class="info">
   <GridLayout class="info-text" rows="auto auto auto auto auto auto auto auto">
-    <Label row=0 class="info-name" [text]="business.name"></Label>
+    <Label row=0 class="info-name" *ngIf="this.business" [text]="business.name"></Label>
     <Label row=1 class="info-basic" *ngIf="this.business != undefined && business.basicAddress" [text]="business.basicAddress"></Label>
     <Label row=2 class="info-basic" *ngIf="this.business != undefined && business.distance" text="Distance: {{business.distance}} miles"></Label>
     <Label row=3 class="info-basic" *ngIf="this.business != undefined && business.rating" text="Rating: {{business.rating}}"></Label>
