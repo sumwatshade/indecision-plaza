@@ -1,12 +1,12 @@
  <ScrollView class="info">
   <GridLayout class="info-text" rows="auto auto auto auto auto auto auto auto">
-    <Label row=0 class="info-name" [text]="business.name"></Label>
-    <Label row=1 class="info-basic" *ngIf="business.basicAddress" [text]="business.basicAddress"></Label>
-    <Label row=2 class="info-basic" *ngIf="business.distance" text="Distance: {{business.distance}} miles"></Label>
-    <Label row=3 class="info-basic" *ngIf="business.rating" text="Rating: {{business.rating}}"></Label>
-    <Label row=4 class="info-basic" *ngIf="business.price" text="Price: {{business.price}}"></Label>
-    <Label row=5 class="info-basic" *ngIf="business.phoneNumber" text="Phone: {{business.phoneNumber}}"></Label>
-    <Button row=6 class="info-button btn btn-secondary"*ngIf="business.distance" [text]="buttonText" (tap)="openWebsite()"></Button>
-    <Image row=7 *ngIf="business.imageUrl" class="img-circle info-image" height="250" width="250" [src]="business.imageUrl"></Image>
+    <Label row=0 class="info-name" *ngIf="this.business" [text]="business.name"></Label>
+    <Label row=1 class="info-basic" *ngIf="this.business != undefined && business.basicAddress" [text]="business.basicAddress"></Label>
+    <Label row=2 class="info-basic" *ngIf="this.business != undefined && business.distance" text="Distance: {{business.distance}} miles"></Label>
+    <Label row=3 class="info-basic" *ngIf="this.business != undefined && business.rating" text="Rating: {{business.rating}}"></Label>
+    <Label row=4 class="info-basic" *ngIf="this.business != undefined && business.price" text="Price: {{business.price}}"></Label>
+    <Label row=5 class="info-basic" *ngIf="this.business != undefined && business.phoneNumber" text="Phone: {{business.phoneNumber}}"></Label>
+    <Button row=6 class="info-button btn btn-secondary"*ngIf="this.business != undefined && business.distance" [text]="buttonText" (tap)="openWebsite()"></Button>
+    <Image row=7 *ngIf="this.business != undefined && business.imageUrl" class="img-circle info-image" height="250" width="250" [src]="business.imageUrl"></Image>
   </GridLayout>
 </ScrollView>

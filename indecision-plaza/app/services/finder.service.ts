@@ -23,30 +23,41 @@ export class FinderService {
    */
   constructor(private http: Http) {
     this.getAuth().forEach(r => this.auth_token = r.access_token);
-
   }
 
   getFoodFromCache(category: string): Business {
-
-    if(this.cachedResults.length == 0 || this.cachedCategory != category ||this.refreshCache){
-       this.refreshCache = false;
-       this.cachedCategory = category;
-       this.getNearbyFood(category).forEach((data) => {
+    console.log("Cache:")
+    this.cachedResults.forEach((res)=> {
+      console.log(res.name)
+    })
+    if (this.cachedResults.length == 0 || this.cachedCategory != category) {
+      this.cachedCategory = category;
+      this.getNearbyFood(category).forEach((data) => {
         this.cachedResults = [];
-        data.businesses.forEach((businessJSON) => {
-          this.cachedResults.push(new Business(businessJSON));
-        });
-        if(this.cachedResults.length == 0){
-          this.refreshCache = true;
-          return Business.makeEmpty();
+        this.cachedResults = data.businesses.map((businessJSON) => new Business(businessJSON));
+        if (this.cachedResults.length == 0) {
+          console.log("Making empty business")
+          console.log(Business.makeInit().toLongString())
+          return Business.makeInit();
+        }
+        else {
+          return this.getRandomRestarauntFromCache()
         }
       });
+    } else {
+      // find a random restaraunt
+      return this.getRandomRestarauntFromCache()
     }
-    let index = Math.floor( Math.random()*this.cachedResults.length );
+
+  }
+
+  private getRandomRestarauntFromCache(): Business {
+    let index = Math.floor(Math.random() * this.cachedResults.length);
     let result = this.cachedResults[index]
-    this.cachedResults.splice( index, 1 )
+    this.cachedResults.splice(index, 1)
     return result;
   }
+
   /*
    *  Find nearby places for food using Yelps Business Search API
    *

@@ -28,30 +28,15 @@ export class FoodFinderComponent {
   }
 
   findFood() {
-    enableLocationRequest();
-    this.chosenPlace = this.foodSvc.getFoodFromCache(this.categoryMap[this.chosenCategory])
-    // this.foodSvc.getNearbyFood(this.categoryMap[this.chosenCategory]).forEach((data) => {
-    //   // Grab the list of businesses from the JSON
-    //   let places = data.businesses
-    //
-    //   if(places.length !== 0) {
-    //     // Choose one random business
-    //     let chosenPlaceJSON = places[Math.floor(Math.random() * places.length)]
-    //     // Convert chosen business into an Entity that is read into the info card
-    //     this.chosenPlace = new Business(chosenPlaceJSON);
-    //     console.log(this.chosenPlace.toLongString())
-    //   }
-    //   else {
-    //     this.chosenPlace = Business.makeEmpty();
-    //     console.log("No results were found");
-    //   }
-
-      // Handles the case that no food places are found
-      // TODO: Implement a Utility that can perform these checks as one function
-      if (this.chosenPlace === undefined || this.chosenPlace === null)
-        this.foodInfo = "No food places in your area";
-      else
-        this.setInfo(this.chosenPlace);
+    enableLocationRequest().then(() => {
+      let apiResult = this.foodSvc.getFoodFromCache(this.categoryMap[this.chosenCategory])
+      if(apiResult != undefined && apiResult != null) {
+        this.chosenPlace = apiResult;
+      }
+    })
+    .catch((error) => {
+      this.chosenPlace = Business.makeInit()
+    });
 
 
   }

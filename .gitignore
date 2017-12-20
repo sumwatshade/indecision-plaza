@@ -5,3 +5,4 @@ report
 
 # No generated files
 *.js
+.DS_Store

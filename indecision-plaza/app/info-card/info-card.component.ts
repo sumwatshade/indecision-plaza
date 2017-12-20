@@ -19,7 +19,12 @@ export class InfoCardComponent {
     this.buttonText = this.business != null && this.business != undefined ? "Website" : "";
   }
 
-  openWebsite() {
+  public openWebsite() {
     TNSUtils.openUrl(this.business.yelpURL);
+  }
+
+  public isValid(attribute) {
+    return this.business != undefined && this.business != null &&
+      this.business[attribute] != undefined && this.business[attribute] != null;
   }
 }
