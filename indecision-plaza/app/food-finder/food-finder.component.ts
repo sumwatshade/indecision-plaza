@@ -27,8 +27,9 @@ export class FoodFinderComponent {
 
   }
 
+  // TODO: figure out how to handle the breaking of this Promise
   findFood() {
-    enableLocationRequest().then(() => {
+      enableLocationRequest().then(() => {
       let apiResult = this.foodSvc.getFoodFromCache(this.categoryMap[this.chosenCategory])
       if(apiResult != undefined && apiResult != null) {
         this.chosenPlace = apiResult;
